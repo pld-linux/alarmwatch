@@ -34,8 +34,6 @@ kiedy nie ignorowany alarm jest aktywny.
 
 %{__make}
 
-gzip -9nf README Changelog
-
 %install
 rm -rf $RPM_BUILD_ROOT
 install -d $RPM_BUILD_ROOT{%{_sbindir},%{_mandir}/man8} \
@@ -70,7 +68,7 @@ fi
 
 %files
 %defattr(644,root,root,755)
-%doc *.gz
+%doc README Changelog
 %config(noreplace) %verify(not size mtime md5) /etc/sysconfig/alarmwatch
 %attr(754,root,root) /etc/rc.d/init.d/alarmwatch
 %attr(755,root,root) %{_sbindir}/*
