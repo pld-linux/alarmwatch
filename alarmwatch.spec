@@ -6,6 +6,7 @@ Release:	1
 License:	GPL
 Group:		Daemons
 Source0:	http://www.azstarnet.com/~donut/programs/alarmwatch/%{name}-%{version}.tar.gz
+# Source0-md5:	8a905a4746fdb028257af842afe748db
 Source1:	%{name}.init
 Source2:	%{name}.sysconfig
 URL:		http://www.azstarnet.com/~donut/programs/alarmwatch.html
