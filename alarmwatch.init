@@ -2,7 +2,7 @@
 #
 # alarmwatch	watches for lm_sensors alarms
 #
-# chkconfig:    2345  32 68
+# chkconfig:	2345  32 68
 #
 # description:	watches lm_sensors and beeps on aparms
 #
@@ -26,12 +26,12 @@ case "$1" in
 	# Check if the service is already running?
 	if [ ! -f /var/lock/subsys/alarmwatch ]; then
 		if [ -z "$CHIPS" ]; then
-		    nls "alarmwatch not configured (CHIPS not set), cannot start."
-		    exit 1
+			nls "alarmwatch not configured (CHIPS not set), cannot start."
+			exit 1
 		fi
 		if [ "$SENSORS_SETUP" = "yes" ]; then
-		    # setup sensors limits, etc.
-		    sensors -s
+			# setup sensors limits, etc.
+			sensors -s
 		fi
 		# read from sensors to clear out any alarms caused by previous limits...
 		sensors > /dev/null
@@ -46,10 +46,10 @@ case "$1" in
 		msg_already_running alarmwatch
 		exit 1
 	fi
-        ;;
+	;;
   stop)
-        # Stop daemons.
-        # show "Stopping %s service" <service>
+	# Stop daemons.
+	# show "Stopping %s service" <service>
 	if [ -f /var/lock/subsys/alarmwatch ]; then
 		msg_stopping alarmwatch
 		killproc alarmwatch
@@ -60,19 +60,19 @@ case "$1" in
 		msg_not_running alarmwatch
 		exit 1
 	fi	
-        ;;
+	;;
   restart|reload|force-reload)
-        $0 stop
+	$0 stop
 	$0 start
-        ;;
+	;;
   status)
 	status alarmwatch
 	RETVAL=$?
-        ;;
+	;;
   *)
-        # show "Usage: %s {start|stop|status|restart|reload|force-reload}" $0
-	msg_usage "$0 {start|stop|status|restart|reload|force-reload}"
-        exit 1
+	# show "Usage: %s {start|stop|restart|reload|force-reload|status}"
+	msg_usage "$0 {start|stop|restart|reload|force-reload|status}"
+	exit 1
 esac
 
 exit $RETVAL
