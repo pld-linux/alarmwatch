@@ -29,7 +29,7 @@ kiedy nie ignorowany alarm jest aktywny.
 %setup -q
 
 %build
-autoconf
+%{__autoconf}
 %configure
 
 %{__make}
