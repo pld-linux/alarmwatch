@@ -1,0 +1,19 @@
+# configuration for alarmwatch
+#
+# To enable alarmwatch automatic startup, set the CHIPS line to your
+# desired command line(see `man alarmwatch') and remove the exit 0
+
+# Example only, you _must_ edit this to match your configuration:
+#CHIPS="via686a-isa-6000 512"
+
+# Initialize sensors settings before loading alarmwatch. (`sensors -s')
+# You may wish to set this to no if you already do it elsewhere (though
+# doing it again will not harm anything.)
+#SENSORS_SETUP=yes
+
+# alarmwatch options (see alarmwatch(8) for details):
+# -C sec - check interval
+# -B sec - beep interval
+# -L sec - log interval
+# -b dev - filename to send beeps to
+#ALARMOPTIONS="-C5 -B30 -L60 -b/dev/console"
