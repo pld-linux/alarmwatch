@@ -26,7 +26,7 @@ case "$1" in
 	# Check if the service is already running?
 	if [ ! -f /var/lock/subsys/alarmwatch ]; then
 		if [ -z "$CHIPS" ]; then
-		    echo "alarmwatch not configured (CHIPS not set), cannot start."
+		    nls "alarmwatch not configured (CHIPS not set), cannot start."
 		    exit 1
 		fi
 		if [ "$SENSORS_SETUP" = "yes" ]; then
