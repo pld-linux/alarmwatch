@@ -20,6 +20,7 @@ ALARMOPTIONS=""
 # Get service config - may override defaults
 [ -f /etc/sysconfig/alarmwatch ] && . /etc/sysconfig/alarmwatch
 
+RETVAL=0
 # See how we were called.
 case "$1" in
   start)
@@ -27,7 +28,7 @@ case "$1" in
 	if [ ! -f /var/lock/subsys/alarmwatch ]; then
 		if [ -z "$CHIPS" ]; then
 			nls "alarmwatch not configured (CHIPS not set), cannot start."
-			exit 1
+			exit 6
 		fi
 		if [ "$SENSORS_SETUP" = "yes" ]; then
 			# setup sensors limits, etc.
@@ -44,7 +45,6 @@ case "$1" in
 	else
 		# show "%s service is already running." <service>
 		msg_already_running alarmwatch
-		exit 1
 	fi
 	;;
   stop)
@@ -53,17 +53,16 @@ case "$1" in
 	if [ -f /var/lock/subsys/alarmwatch ]; then
 		msg_stopping alarmwatch
 		killproc alarmwatch
-		RETVAL=$?
 		rm -f /var/lock/subsys/alarmwatch $PIDFILE
 	else
 		# show "%s service is not running." <service>
 		msg_not_running alarmwatch
-		exit 1
 	fi	
 	;;
-  restart|reload|force-reload)
+  restart|force-reload)
 	$0 stop
 	$0 start
+	RETVAL=$?
 	;;
   status)
 	status alarmwatch
@@ -71,8 +70,8 @@ case "$1" in
 	;;
   *)
 	# show "Usage: %s {start|stop|restart|reload|force-reload|status}"
-	msg_usage "$0 {start|stop|restart|reload|force-reload|status}"
-	exit 1
+	msg_usage "$0 {start|stop|restart|force-reload|status}"
+	exit 3
 esac
 
 exit $RETVAL
