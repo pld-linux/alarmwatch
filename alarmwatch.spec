@@ -71,7 +71,7 @@ fi
 %files
 %defattr(644,root,root,755)
 %doc *.gz
+%config(noreplace) %verify(not size mtime md5) /etc/sysconfig/alarmwatch
+%attr(754,root,root) /etc/rc.d/init.d/alarmwatch
 %attr(755,root,root) %{_sbindir}/*
 %{_mandir}/man8/*
-%attr(754,root,root) /etc/rc.d/init.d/alarmwatch
-%config(noreplace) %verify(not size mtime md5) /etc/sysconfig/alarmwatch
