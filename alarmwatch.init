@@ -36,7 +36,6 @@ case "$1" in
 		fi
 		# read from sensors to clear out any alarms caused by previous limits...
 		sensors > /dev/null
-				
 		msg_starting alarmwatch
 		daemon alarmwatch -p "$PIDFILE" $CHIPS $ALARMOPTIONS
 		RETVAL=$?
@@ -53,7 +52,7 @@ case "$1" in
 		rm -f /var/lock/subsys/alarmwatch $PIDFILE
 	else
 		msg_not_running alarmwatch
-	fi	
+	fi
 	;;
   restart|force-reload)
 	$0 stop
