@@ -37,25 +37,21 @@ case "$1" in
 		# read from sensors to clear out any alarms caused by previous limits...
 		sensors > /dev/null
 				
-		# show "Starting %s service" <service>
 		msg_starting alarmwatch
 		daemon alarmwatch -p "$PIDFILE" $CHIPS $ALARMOPTIONS
 		RETVAL=$?
 		[ $RETVAL -eq 0 ] && touch /var/lock/subsys/alarmwatch
 	else
-		# show "%s service is already running." <service>
 		msg_already_running alarmwatch
 	fi
 	;;
   stop)
 	# Stop daemons.
-	# show "Stopping %s service" <service>
 	if [ -f /var/lock/subsys/alarmwatch ]; then
 		msg_stopping alarmwatch
 		killproc alarmwatch
 		rm -f /var/lock/subsys/alarmwatch $PIDFILE
 	else
-		# show "%s service is not running." <service>
 		msg_not_running alarmwatch
 	fi	
 	;;
@@ -69,7 +65,6 @@ case "$1" in
 	RETVAL=$?
 	;;
   *)
-	# show "Usage: %s {start|stop|restart|reload|force-reload|status}"
 	msg_usage "$0 {start|stop|restart|force-reload|status}"
 	exit 3
 esac
