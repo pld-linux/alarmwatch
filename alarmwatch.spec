@@ -11,7 +11,7 @@ Source1:	%{name}.init
 Source2:	%{name}.sysconfig
 URL:		http://www.azstarnet.com/~donut/programs/alarmwatch.html
 BuildRequires:	autoconf
-PreReq:		rc-scripts
+Requires:	rc-scripts
 Requires(post,preun):	/sbin/chkconfig
 Requires:	lm_sensors
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
@@ -70,7 +70,7 @@ fi
 %files
 %defattr(644,root,root,755)
 %doc README Changelog
-%config(noreplace) %verify(not size mtime md5) /etc/sysconfig/alarmwatch
+%config(noreplace) %verify(not md5 mtime size) /etc/sysconfig/alarmwatch
 %attr(754,root,root) /etc/rc.d/init.d/alarmwatch
 %attr(755,root,root) %{_sbindir}/*
 %{_mandir}/man8/*
