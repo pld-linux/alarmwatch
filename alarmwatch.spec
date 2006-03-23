@@ -11,9 +11,10 @@ Source1:	%{name}.init
 Source2:	%{name}.sysconfig
 URL:		http://www.azstarnet.com/~donut/programs/alarmwatch.html
 BuildRequires:	autoconf
-Requires:	rc-scripts
+BuildRequires:	rpmbuild(macros) >= 1.268
 Requires(post,preun):	/sbin/chkconfig
 Requires:	lm_sensors
+Requires:	rc-scripts
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
@@ -32,7 +33,6 @@ kiedy nie ignorowany alarm jest aktywny.
 %build
 %{__autoconf}
 %configure
-
 %{__make}
 
 %install
@@ -52,18 +52,14 @@ rm -rf $RPM_BUILD_ROOT
 
 %post
 /sbin/chkconfig --add alarmwatch
-if [ -f /var/lock/subsys/alarmwatch ]; then
-	/etc/rc.d/init.d/gpm alarmwatch >&2
-else
-	echo "Run \"/etc/rc.d/init.d/alarmwatch start\" to start alarmwatch daemon."
+%service alarmwatch restart "alarmwatch daemon"
+if [ "$1" = 1 ]; then
 	echo "Remember to configure it first!"
 fi
 
 %preun
 if [ "$1" = "0" ]; then
-	if [ -f /var/lock/subsys/alarmwatch ]; then
-		/etc/rc.d/init.d/alarmwatch stop >&2
-	fi
+	%service alarmwatch stop
 	/sbin/chkconfig --del alarmwatch
 fi
 
