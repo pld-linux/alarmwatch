@@ -1,5 +1,5 @@
 Summary:	Daemon that watches lm_sensors and beeps on alarms
-Summary(pl):	Demon kontroluj±cy stan lm_sensors i piszcz±cy podczas alarmów
+Summary(pl.UTF-8):   Demon kontrolujÄ…cy stan lm_sensors i piszczÄ…cy podczas alarmÃ³w
 Name:		alarmwatch
 Version:	1.0
 Release:	1
@@ -22,9 +22,9 @@ alarmwatch watches the lm_sensors /proc filesystem for the chips you
 specify, and alerts you by beeping and syslog messages when an alarm
 that is not ignored is active.
 
-%description -l pl
-alarmwatch kontroluje stan wybranych uk³adów poprzez lm_sensors w
-systemie plików /proc i ostrzega piskami oraz komunikatami w logach,
+%description -l pl.UTF-8
+alarmwatch kontroluje stan wybranych ukÅ‚adÃ³w poprzez lm_sensors w
+systemie plikÃ³w /proc i ostrzega piskami oraz komunikatami w logach,
 kiedy nie ignorowany alarm jest aktywny.
 
 %prep
