@@ -1,5 +1,5 @@
 Summary:	Daemon that watches lm_sensors and beeps on alarms
-Summary(pl.UTF-8):   Demon kontrolujący stan lm_sensors i piszczący podczas alarmów
+Summary(pl.UTF-8):	Demon kontrolujący stan lm_sensors i piszczący podczas alarmów
 Name:		alarmwatch
 Version:	1.0
 Release:	1
